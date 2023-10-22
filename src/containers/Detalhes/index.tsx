@@ -4,7 +4,7 @@ import { Container } from './styles'
 const Detalhes = () => {
   return (
     <Container>
-      <DetalheCard />
+      <DetalheCard estaSelecionado={false} />
     </Container>
   )
 }

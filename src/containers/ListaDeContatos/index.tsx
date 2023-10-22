@@ -1,42 +1,65 @@
+import { useDispatch, useSelector } from 'react-redux'
+
 import Contato from '../../components/Contato'
 import * as S from './styles'
 
 import Plus from '../../assets/images/plus.svg'
 
-const contatos = [
-  {
-    nome: 'Alison Oliveira',
-    telefone: '11994138657',
-    email: 'alison.oliveira@teste.com.br'
-  },
-  {
-    nome: 'Linus Torvalds',
-    telefone: '11912349876',
-    email: 'linus.torvalds@teste.com.br'
-  },
-  {
-    nome: 'Dan Abramov',
-    telefone: '11998761234',
-    email: 'dan.abramov@teste.com.br'
-  }
-]
+import { RootReducer } from '../../store'
+
+import { filtrar } from '../../store/reducers/contatos'
+import { selecionar } from '../../store/reducers/detalhes'
 
 const ListaDeContatos = () => {
+  const dispatch = useDispatch()
+  const { itens, termo } = useSelector((state: RootReducer) => state.contatos)
+
   const BtnPlus = () => {
     console.log('Btn Plus')
   }
+
+  const campoBusca = () => {
+    dispatch(selecionar({ id: 0, nome: '', email: '', telefone: '' }))
+  }
+
+  const filtraContatos = () => {
+    let contatosFiltrados = itens
+    if (termo !== undefined) {
+      contatosFiltrados = contatosFiltrados.filter(
+        (item) => item.nome.toLowerCase().search(termo.toLowerCase()) >= 0
+      )
+
+      return contatosFiltrados
+    } else {
+      return itens
+    }
+  }
+
+  const listaContatos = filtraContatos()
+
   return (
     <S.Aside>
-      <S.Campo type="text" placeholder="buscar"></S.Campo>
+      <S.Campo
+        type="text"
+        placeholder="buscar"
+        value={termo}
+        onClick={campoBusca}
+        onChange={(evento) => dispatch(filtrar(evento.target.value))}
+      ></S.Campo>
       <a onClick={BtnPlus}>
         <img src={Plus} alt="" />
       </a>
       {/* <button type="submit">Adicionar</button> */}
       <main>
         <ul>
-          {contatos.map((c) => (
+          {listaContatos.map((c) => (
             <li key={c.nome}>
-              <Contato nome={c.nome} />
+              <Contato
+                id={c.id}
+                nome={c.nome}
+                email={c.email}
+                telefone={c.telefone}
+              />
             </li>
           ))}
         </ul>
