@@ -41,10 +41,37 @@ const contatoSlice = createSlice({
       state.itens = state.itens.filter(
         (contato) => contato.id !== action.payload
       )
+    },
+    adicionar: (state, action: PayloadAction<Omit<Contato, 'id'>>) => {
+      const contatoExiste = state.itens.find(
+        (contato) =>
+          contato.nome.toLowerCase() === action.payload.nome.toLowerCase()
+      )
+
+      if (contatoExiste) {
+        alert('Já existe um contato com esse nome')
+      } else {
+        const maxId = state.itens[state.itens.length - 1]
+        console.log('maxId ' + maxId)
+        const novoContato = {
+          ...action.payload,
+          id: maxId ? maxId.id + 1 : 1
+        }
+        state.itens.push(novoContato)
+      }
+    },
+    editar: (state, action: PayloadAction<Contato>) => {
+      const indexContato = state.itens.findIndex(
+        (c) => c.id === action.payload.id
+      )
+
+      if (indexContato >= 0) {
+        state.itens[indexContato] = action.payload
+      }
     }
   }
 })
 
-export const { filtrar, remover } = contatoSlice.actions
+export const { filtrar, remover, adicionar, editar } = contatoSlice.actions
 
 export default contatoSlice.reducer

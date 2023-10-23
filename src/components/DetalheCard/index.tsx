@@ -45,13 +45,15 @@ const DetalheCard = ({ estaSelecionado }: Props) => {
             <S.Texto textoMaior={false}>{email}</S.Texto>
           </S.Card>
           <S.EditRemove>
-            <S.Imagem
-              imgMaior={false}
-              src={Edit}
-              botao
-              alt="icone de edição"
-              title="Editar contato"
-            />
+            <S.Editar to="/editar">
+              <S.Imagem
+                imgMaior={false}
+                src={Edit}
+                botao
+                alt="icone de edição"
+                title="Editar contato"
+              ></S.Imagem>
+            </S.Editar>
             <S.Imagem
               imgMaior={false}
               remove

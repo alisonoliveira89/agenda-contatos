@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 type Props = {
@@ -37,6 +38,12 @@ export const Imagem = styled.img<Props>`
     transform: ${(props) => (props.botao ? 'scale(1.2)' : 'scale(1)')};
   }
 `
+
+export const Editar = styled(Link)`
+  align-self: center;
+  justify-self: center;
+`
+
 export const Texto = styled.p<Props>`
   margin-top: 16px;
   color: #fff;

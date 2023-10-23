@@ -10,13 +10,14 @@ import { RootReducer } from '../../store'
 import { filtrar } from '../../store/reducers/contatos'
 import { selecionar } from '../../store/reducers/detalhes'
 
-const ListaDeContatos = () => {
+type Props = {
+  mostraContatos: boolean
+  edicao: boolean
+}
+
+const ListaDeContatos = ({ mostraContatos, edicao }: Props) => {
   const dispatch = useDispatch()
   const { itens, termo } = useSelector((state: RootReducer) => state.contatos)
-
-  const BtnPlus = () => {
-    console.log('Btn Plus')
-  }
 
   const campoBusca = () => {
     dispatch(selecionar({ id: 0, nome: '', email: '', telefone: '' }))
@@ -39,31 +40,44 @@ const ListaDeContatos = () => {
 
   return (
     <S.Aside>
-      <S.Campo
-        type="text"
-        placeholder="buscar"
-        value={termo}
-        onClick={campoBusca}
-        onChange={(evento) => dispatch(filtrar(evento.target.value))}
-      ></S.Campo>
-      <a onClick={BtnPlus}>
-        <img src={Plus} alt="" />
-      </a>
-      {/* <button type="submit">Adicionar</button> */}
-      <main>
-        <ul>
-          {listaContatos.map((c) => (
-            <li key={c.nome}>
-              <Contato
-                id={c.id}
-                nome={c.nome}
-                email={c.email}
-                telefone={c.telefone}
-              />
-            </li>
-          ))}
-        </ul>
-      </main>
+      {mostraContatos ? (
+        <>
+          <S.Busca>
+            <S.Campo
+              type="text"
+              placeholder="buscar"
+              value={termo}
+              onClick={campoBusca}
+              onChange={(evento) => dispatch(filtrar(evento.target.value))}
+            ></S.Campo>
+            <S.Adicionar to="/novo">
+              <img src={Plus} alt="icone adicionar" title="Adicionar contato" />
+            </S.Adicionar>
+          </S.Busca>
+          <main>
+            <ul>
+              {listaContatos.map((c) => (
+                <li key={c.nome}>
+                  <Contato
+                    id={c.id}
+                    nome={c.nome}
+                    email={c.email}
+                    telefone={c.telefone}
+                  />
+                </li>
+              ))}
+            </ul>
+          </main>
+        </>
+      ) : (
+        <>
+          {edicao ? (
+            <S.Texto>Edição de contato</S.Texto>
+          ) : (
+            <S.Texto>Adicionar novo contato</S.Texto>
+          )}
+        </>
+      )}
     </S.Aside>
   )
 }
