@@ -19,6 +19,11 @@ export const Card = styled.div`
   margin-left: 32px;
   margin-right: 32px;
   align-items: center;
+
+  @media ${devices.md} {
+    margin-left: 8px;
+    grid-template-columns: 80px auto;
+  }
 `
 export const CancelSalvar = styled.div`
   display: block;
@@ -27,6 +32,11 @@ export const CancelSalvar = styled.div`
   margin-left: 32px;
   margin-right: 32px;
   padding-bottom: 32px;
+  @media ${devices.md} {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+  }
 `
 
 export const Botao = styled.button<Props>`
@@ -52,6 +62,7 @@ export const Botao = styled.button<Props>`
   @media ${devices.md} {
     margin-left: 16px;
     width: 25%;
+    font-size: 12px;
   }
 `
 
@@ -61,6 +72,11 @@ export const Imagem = styled.img<Props>`
   width: ${(props) => (props.imgMaior ? '90px' : '34px')};
   align-self: center;
   justify-self: center;
+
+  @media ${devices.md} {
+    height: ${(props) => (props.imgMaior ? '70px' : '27px')};
+    width: ${(props) => (props.imgMaior ? '70px' : '27px')};
+  }
 `
 export const Campo = styled.input<Props>`
   margin-top: 16px;
@@ -76,5 +92,9 @@ export const Campo = styled.input<Props>`
     color: ${variaveis.branco};
     opacity: 0.7;
     font-size: 16px;
+  }
+
+  @media ${devices.md} {
+    font-size: ${(props) => (props.textoMaior ? '20px' : '16px')};
   }
 `

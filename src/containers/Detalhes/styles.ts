@@ -12,10 +12,11 @@ export const Titulo = styled.h1`
   color: ${variaveis.azulClaro};
 
   @media ${devices.md} {
+    font-size: 20px;
     text-align: center;
     margin-top: 0;
-    margin-right: 32px;
+    margin-left: 8px;
+    margin-right: 8px;
     padding-top: 16px;
-    border-bottom: 2px solid ${variaveis.azulClaro};
   }
 `

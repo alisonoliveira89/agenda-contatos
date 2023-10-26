@@ -13,9 +13,16 @@ export const Card = styled.div`
   display: grid;
   grid-template-columns: 150px auto;
   grid-gap: 8px;
-  margin-top: 32px;
+  margin-top: 8px;
   margin-left: 32px;
   align-items: center;
+
+  @media ${devices.md} {
+    margin-left: 8px;
+    margin-right: 8px;
+    border-top: 1px solid ${variaveis.azulClaro};
+    grid-template-columns: 90px auto;
+  }
 `
 export const EditRemove = styled.div`
   display: grid;
@@ -26,6 +33,13 @@ export const EditRemove = styled.div`
   margin-right: 32px;
   align-items: center;
   border-top: 2px solid ${variaveis.azulClaro};
+
+  @media ${devices.md} {
+    margin-left: 8px;
+    margin-right: 8px;
+    border-top: 1px solid ${variaveis.azulClaro};
+    grid-template-columns: 90px auto;
+  }
 `
 
 export const Imagem = styled.img<Props>`
@@ -38,6 +52,11 @@ export const Imagem = styled.img<Props>`
   &:hover {
     transform: ${(props) => (props.botao ? 'scale(1.2)' : 'scale(1)')};
   }
+
+  @media ${devices.md} {
+    height: ${(props) => (props.imgMaior ? '60px' : '27px')};
+    width: ${(props) => (props.imgMaior ? '60px' : '27px')};
+  }
 `
 
 export const Editar = styled(Link)`
@@ -49,6 +68,10 @@ export const Texto = styled.p<Props>`
   margin-top: 16px;
   color: ${variaveis.branco};
   font-size: ${(props) => (props.textoMaior ? '32px' : '20px')};
+
+  @media ${devices.md} {
+    font-size: ${(props) => (props.textoMaior ? '20px' : '16px')};
+  }
 `
 
 export const SubTitulo = styled.h3`
@@ -57,6 +80,7 @@ export const SubTitulo = styled.h3`
   color: ${variaveis.azulClaro};
 
   @media ${devices.md} {
+    font-size: 16px;
     text-align: center;
     margin-right: 32px;
   }
