@@ -1,9 +1,10 @@
 import DetalheCard from '../../components/DetalheCard'
-import { Container } from './styles'
+import { Container, Titulo } from './styles'
 
 const Detalhes = () => {
   return (
     <Container>
+      <Titulo>Detalhes</Titulo>
       <DetalheCard estaSelecionado={false} />
     </Container>
   )

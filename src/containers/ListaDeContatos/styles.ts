@@ -1,11 +1,22 @@
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
+import variaveis, { devices } from '../../styles/variaveis'
 
-export const Aside = styled.aside`
-  margin: 0 0 16px 16px;
-  background-color: #eee;
+type Props = {
+  formulario: boolean
+}
+
+export const Aside = styled.aside<Props>`
+  margin-left: 16px;
+  background-color: ${variaveis.cinza};
   height: 100vh;
+  overflow-y: scroll;
+
+  @media ${devices.md} {
+    margin: 0;
+    height: ${(props) => (props.formulario ? '15vh' : '40vh')};
+  }
 `
 
 export const Contatos = styled.div`
@@ -23,11 +34,11 @@ export const Campo = styled.input`
   margin-top: 16px;
   margin-bottom: 16px;
   padding: 8px;
-  background-color: #fff;
+  background-color: ${variaveis.branco};
   border-radius: 8px;
   font-weight: bold;
-  color: #666666;
-  border-color: #666666;
+  color: ${variaveis.cinzaEscuro};
+  border-color: ${variaveis.cinzaEscuro};
 `
 
 export const Adicionar = styled(Link)`
@@ -47,6 +58,6 @@ export const Texto = styled.p`
   padding: 16px;
   margin-top: 32px;
   margin-left: 8px;
-  background-color: #bddeff;
-  color: #666666;
+  background-color: ${variaveis.azulClaro};
+  color: ${variaveis.cinzaEscuro};
 `

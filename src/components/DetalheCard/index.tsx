@@ -66,7 +66,9 @@ const DetalheCard = ({ estaSelecionado }: Props) => {
           </S.EditRemove>
         </>
       ) : (
-        <></>
+        <>
+          <S.SubTitulo>Nenhum contato selecionado</S.SubTitulo>
+        </>
       )}
     </>
   )

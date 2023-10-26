@@ -39,7 +39,7 @@ const ListaDeContatos = ({ mostraContatos, edicao }: Props) => {
   const listaContatos = filtraContatos()
 
   return (
-    <S.Aside>
+    <S.Aside formulario={!mostraContatos}>
       {mostraContatos ? (
         <>
           <S.Busca>

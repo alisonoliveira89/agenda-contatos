@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import variaveis, { devices } from '../../styles/variaveis'
 
 type Props = {
   textoMaior?: boolean
@@ -7,24 +8,25 @@ type Props = {
 }
 
 export const Container = styled.main`
-  background-color: #74b9ff;
+  background-color: ${variaveis.azulEscuro};
 `
 
 export const Card = styled.div`
   display: grid;
   grid-template-columns: 150px auto;
   grid-gap: 8px;
-  margin-top: 32px;
+  padding-top: 32px;
   margin-left: 32px;
   margin-right: 32px;
   align-items: center;
 `
 export const CancelSalvar = styled.div`
-  display: flex;
+  display: block;
   align-items: center;
   margin-top: 32px;
   margin-left: 32px;
   margin-right: 32px;
+  padding-bottom: 32px;
 `
 
 export const Botao = styled.button<Props>`
@@ -35,7 +37,7 @@ export const Botao = styled.button<Props>`
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #fff;
+  color: ${variaveis.branco};
   background-color: transparent;
   border: none;
   border-radius: 6px;
@@ -44,7 +46,12 @@ export const Botao = styled.button<Props>`
     background-color: ${(props) => (props.remove ? '#eb7777' : '#81d59a')};
     transition: 0.3s ease;
     opacity: 1;
-    border: 2px solid #bddeff;
+    border: 2px solid ${variaveis.azulClaro};
+  }
+
+  @media ${devices.md} {
+    margin-left: 16px;
+    width: 25%;
   }
 `
 
@@ -57,16 +64,16 @@ export const Imagem = styled.img<Props>`
 `
 export const Campo = styled.input<Props>`
   margin-top: 16px;
-  color: #fff;
-  background-color: #74b9ff;
+  color: ${variaveis.branco};
+  background-color: ${variaveis.azulEscuro};
   border: none;
-  border-bottom: 1px solid #bddeff;
+  border-bottom: 1px solid ${variaveis.azulClaro};
   font-size: ${(props) => (props.textoMaior ? '32px' : '20px')};
   &:focus {
     outline: none;
   }
   &::placeholder {
-    color: #fff;
+    color: ${variaveis.branco};
     opacity: 0.7;
     font-size: 16px;
   }

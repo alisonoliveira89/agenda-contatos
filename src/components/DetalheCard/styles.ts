@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import variaveis, { devices } from '../../styles/variaveis'
 
 type Props = {
   textoMaior?: boolean
@@ -24,7 +25,7 @@ export const EditRemove = styled.div`
   margin-left: 32px;
   margin-right: 32px;
   align-items: center;
-  border-top: 2px solid #bddeff;
+  border-top: 2px solid ${variaveis.azulClaro};
 `
 
 export const Imagem = styled.img<Props>`
@@ -46,6 +47,17 @@ export const Editar = styled(Link)`
 
 export const Texto = styled.p<Props>`
   margin-top: 16px;
-  color: #fff;
+  color: ${variaveis.branco};
   font-size: ${(props) => (props.textoMaior ? '32px' : '20px')};
+`
+
+export const SubTitulo = styled.h3`
+  margin-top: 64px;
+  margin-left: 32px;
+  color: ${variaveis.azulClaro};
+
+  @media ${devices.md} {
+    text-align: center;
+    margin-right: 32px;
+  }
 `

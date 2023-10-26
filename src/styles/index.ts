@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components'
+import { devices } from './variaveis'
 
 const EstiloGlobal = createGlobalStyle`
   * {
@@ -15,6 +16,10 @@ export const Container = styled.div`
   max-width: 1024px;
   width: 100%;
   margin: 0 auto;
+
+  @media ${devices.md} {
+    display: block;
+  }
 `
 
 export default EstiloGlobal
