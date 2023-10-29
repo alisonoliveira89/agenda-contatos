@@ -36,7 +36,9 @@ const ListaDeContatos = ({ mostraContatos, edicao }: Props) => {
     }
   }
 
-  const listaContatos = filtraContatos()
+  const listaContatos = filtraContatos().sort((a, b) =>
+    a.nome.toLowerCase() < b.nome.toLowerCase() ? -1 : 1
+  )
 
   return (
     <S.Aside formulario={!mostraContatos}>

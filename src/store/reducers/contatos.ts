@@ -43,13 +43,17 @@ const contatoSlice = createSlice({
       )
     },
     adicionar: (state, action: PayloadAction<Omit<Contato, 'id'>>) => {
-      const contatoExiste = state.itens.find(
+      const telefoneExiste = state.itens.find(
         (contato) =>
-          contato.nome.toLowerCase() === action.payload.nome.toLowerCase()
+          contato.telefone.toLowerCase() ===
+          action.payload.telefone.toLowerCase()
       )
-
-      if (contatoExiste) {
-        alert('Já existe um contato com esse nome')
+      if (telefoneExiste) {
+        alert(
+          'Já existe um contato (' +
+            telefoneExiste.nome +
+            ') com esse número de telefone'
+        )
       } else {
         const maxId = state.itens[state.itens.length - 1]
         console.log('maxId ' + maxId)

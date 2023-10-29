@@ -40,6 +40,8 @@ const Formulario = ({ edicao }: Props) => {
   const adicionarContato = (evento: FormEvent) => {
     evento.preventDefault()
 
+    console.log('##### function Adicionar')
+
     dispatch(
       adicionar({
         nome,
@@ -76,7 +78,14 @@ const Formulario = ({ edicao }: Props) => {
 
   return (
     <S.Container>
-      <form onSubmit={edicao ? editarContato : adicionarContato}>
+      <form
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault()
+          }
+        }}
+        onSubmit={edicao ? editarContato : adicionarContato}
+      >
         <S.Card>
           <S.Imagem imgMaior src={Avatar} alt="imagem de contato" />
           <S.Campo
@@ -91,7 +100,7 @@ const Formulario = ({ edicao }: Props) => {
           <S.Campo
             value={telefone}
             onChange={(evento) => setTelefone(evento.target.value)}
-            type="tel"
+            type="number"
             placeholder="Telefone"
             textoMaior={false}
             required
@@ -106,7 +115,7 @@ const Formulario = ({ edicao }: Props) => {
           ></S.Campo>
         </S.Card>
         <S.CancelSalvar>
-          <S.Botao remove onClick={() => navigate('/')}>
+          <S.Botao remove type="submit" onClick={() => navigate('/')}>
             Cancelar
           </S.Botao>
           <S.Botao type="submit">Salvar</S.Botao>
